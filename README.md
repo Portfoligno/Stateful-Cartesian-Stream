@@ -4,7 +4,7 @@
 
 Stateful Cartesian Streams
 ===
-A poor man's for-comprehension (as in Scala) or do-notation (as in Haskell) for synchronous computation in Java.
+A poor man's for-comprehension (as in Scala) or do-notation (as in Haskell) for stream composition in Java.
 
 For Kotlin users, [Λrrow](https://arrow-kt.io/docs/patterns/monad_comprehensions/) is a better alternative.
 

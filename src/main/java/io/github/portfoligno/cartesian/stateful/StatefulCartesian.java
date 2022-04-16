@@ -14,7 +14,7 @@ import java.util.stream.StreamSupport;
 import static java.util.Spliterators.spliteratorUnknownSize;
 
 /**
- * A poor man's for-comprehension/do-notation
+ * A poor man's for-comprehension/do-notation for stream composition
  */
 public class StatefulCartesian {
   private final List<Iterator<?>> iterators = Lists.newArrayList();
