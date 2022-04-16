@@ -28,31 +28,27 @@ public class StatefulCartesian {
    * Contribute a new axis to the iteration. Assumed to be invoked consistently across runs.
    */
   public <T> T pull(Supplier<Stream<T>> stream) {
-    return pullIterator(Stream.of(stream).flatMap(Supplier::get).iterator());
+    return pull(() -> stream.get().iterator());
   }
 
   /**
    * Contribute a new axis to the iteration. Assumed to be invoked consistently across runs.
    */
-  public <T> T pull(Iterable<T> iterable) {
-    return pullIterator(iterable.iterator());
-  }
-
   @SuppressWarnings("unchecked")
-  private <T> T pullIterator(Iterator<T> iterator) {
-    index++;
+  public <T> T pull(Iterable<T> iterable) {
+    int i = index = 1 + index;
 
-    if (index == iterators.size()) {
-      iterators.add(iterator);
+    if (i == iterators.size()) {
+      iterators.add(iterable.iterator());
     }
     int n = values.size();
 
-    if (index == n) {
-      values.add(iterators.get(index).next());
-    } else if (index == n - 1) {
-      values.set(index, iterators.get(index).next());
+    if (i == n) {
+      values.add(iterators.get(i).next());
+    } else if (i == n - 1) {
+      values.set(i, iterators.get(i).next());
     }
-    return (T) values.get(index);
+    return (T) values.get(i);
   }
 
   public static <T> Stream<T> yieldAll(Function<StatefulCartesian, T> iteration) {
