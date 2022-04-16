@@ -86,7 +86,10 @@ public class StatefulCartesian {
 
         if (iterators.size() - 1 == i && !iterators.get(i).hasNext()) {
           iterators.remove(i);
-          values.remove(i);
+
+          if (values.size() - 1 == i) {
+            values.remove(i);
+          }
         } else {
           throw e;
         }
