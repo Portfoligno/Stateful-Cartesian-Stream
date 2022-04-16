@@ -51,7 +51,7 @@ public class StatefulCartesian {
     return (T) values.get(i);
   }
 
-  public static <T> Stream<T> yieldAll(Function<StatefulCartesian, T> iteration) {
+  public static <T> Stream<T> stream(Function<StatefulCartesian, T> iteration) {
     StatefulCartesian state = new StatefulCartesian();
     Iterator<T> iterator = new AbstractIterator<T>() {
       @Override

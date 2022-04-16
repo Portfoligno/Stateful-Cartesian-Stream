@@ -24,7 +24,7 @@ dependencies {
 
 ```java
 List<Integer> combinations = StatefulCartesian
-  .yieldAll(c -> {
+  .stream(c -> {
     int i = c.pull(List.of(-1, 0, 1));
     int j = c.pull(List.of(700, 800, 900));
     int k = c.pull(List.of(1, 2, 3));
