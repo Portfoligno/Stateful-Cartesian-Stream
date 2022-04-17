@@ -27,7 +27,7 @@ public class StatefulCartesian {
   /**
    * Contribute a new axis to the iteration. Assumed to be invoked consistently across runs.
    */
-  public <T> T pull(Supplier<Stream<T>> stream) {
+  public <T> T pull(Supplier<? extends Stream<T>> stream) {
     return pull(() -> stream.get().iterator());
   }
 
