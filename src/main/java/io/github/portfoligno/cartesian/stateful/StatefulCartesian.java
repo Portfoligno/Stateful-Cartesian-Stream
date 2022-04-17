@@ -3,6 +3,7 @@ package io.github.portfoligno.cartesian.stateful;
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.Lists;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -28,14 +29,21 @@ public class StatefulCartesian {
    * Contribute a new axis to the iteration. Assumed to be invoked consistently across runs.
    */
   public <T> T pull(Supplier<? extends Stream<T>> stream) {
-    return pull(() -> stream.get().iterator());
+    return pullIterable(() -> stream.get().iterator());
+  }
+
+  /**
+   * Contribute a new axis to the iteration. Assumed to be invoked consistently across runs.
+   */
+  public <T> T pull(Collection<T> collection) {
+    return pullIterable(collection);
   }
 
   /**
    * Contribute a new axis to the iteration. Assumed to be invoked consistently across runs.
    */
   @SuppressWarnings("unchecked")
-  public <T> T pull(Iterable<T> iterable) {
+  public <T> T pullIterable(Iterable<T> iterable) {
     int i = index = 1 + index;
 
     if (i == iterators.size()) {
